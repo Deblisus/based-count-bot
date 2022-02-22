@@ -1,7 +1,8 @@
 import json
 import discord
 
-TOKEN = 'OTQ1NzIzODc3MTM5NTY2NjAz.YhUT_w.q7HZlj7zpFFFEEq5lnYOJ-UiFRg'
+o = open('secret.txt', 'r')
+TOKEN = o.read()
 
 client = discord.Client()
 
@@ -28,7 +29,7 @@ async def on_message(message):
     if message.reference is not None:
         if words[0].lower() == 'based' or message.content[0:5].lower() == 'based':
             up_based(message)
-            name = message.reference.resolved.author
+            name = str(message.reference.resolved.author)
             await message.channel.send('@{0}\'s based count is now {1}'.format(name, count[name]))
 
     elif words[0].lower() == 'basedcount':
